@@ -9,8 +9,8 @@ from io import BytesIO
 from docx import Document
 from fastapi import UploadFile
 
-from ai_resume_analyzer.services.extractors.base import BaseDocumentExtractor
 from ai_resume_analyzer.exceptions.document import CorruptedDocumentException
+from ai_resume_analyzer.services.extractors.base import BaseDocumentExtractor
 
 
 class DocxExtractor(BaseDocumentExtractor):
@@ -40,7 +40,7 @@ class DocxExtractor(BaseDocumentExtractor):
         ]
 
         return "\n".join(paragraphs)
-    
+
     async def validate_document(self, file: UploadFile) -> None:
         """
         Validate the uploaded DOCX document.

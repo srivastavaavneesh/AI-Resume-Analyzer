@@ -9,17 +9,18 @@ from io import BytesIO
 from fastapi import UploadFile
 from pypdf import PdfReader
 
-
 from ai_resume_analyzer.exceptions.document import (
     CorruptedDocumentException,
     PasswordProtectedDocumentException,
 )
 from ai_resume_analyzer.services.extractors.base import BaseDocumentExtractor
 
+
 class PdfExtractor(BaseDocumentExtractor):
     """
     Extracts text from PDF documents.
     """
+
     async def extract_text(self, file: UploadFile) -> str:
         """
         Extract text from a PDF document.
@@ -42,7 +43,7 @@ class PdfExtractor(BaseDocumentExtractor):
             extracted_pages.append(page_text)
 
         return "\n".join(extracted_pages)
-    
+
     async def validate_document(self, file: UploadFile) -> None:
         """
         Validate the uploaded PDF document.

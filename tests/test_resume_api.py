@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import AsyncMock, patch
 
 
@@ -11,7 +10,6 @@ def test_extract_resume_endpoint(client):
         "ai_resume_analyzer.api.routes.resume.resume_service.extract_resume_text",
         new_callable=AsyncMock,
     ) as mock_extract:
-
         mock_extract.return_value = "John Doe Resume"
 
         response = client.post(

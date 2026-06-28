@@ -8,9 +8,7 @@ from fastapi import APIRouter
 
 from ai_resume_analyzer.core.config import settings
 
-router = APIRouter(
-    tags=["Health"]
-)
+router = APIRouter(tags=["Health"])
 
 
 @router.get("/health")
