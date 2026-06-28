@@ -23,7 +23,7 @@ class BaseDocumentExtractor(ABC):
             CorruptedFileException
         """
         pass
-    
+
     @abstractmethod
     async def extract_text(self, file: UploadFile) -> str:
         """
@@ -35,5 +35,4 @@ class BaseDocumentExtractor(ABC):
         Returns:
             Extracted text.
         """
-        pass   
-    
+        pass

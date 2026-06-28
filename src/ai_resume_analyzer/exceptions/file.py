@@ -6,9 +6,8 @@ from ai_resume_analyzer.exceptions.base import BaseApplicationException
 
 
 class FileTooLargeException(BaseApplicationException):
-    """Raised when the uploaded file exceeds the maximum allowed size.
-    """
-    
+    """Raised when the uploaded file exceeds the maximum allowed size."""
+
     def __init__(self, max_size_mb: int) -> None:
         """
         Initialize the exception.
@@ -19,11 +18,11 @@ class FileTooLargeException(BaseApplicationException):
         super().__init__(
             f"File size exceeds the maximum allowed size of {max_size_mb} MB."
         )
-        
+
+
 class EmptyFileException(BaseApplicationException):
-    """Raised when the uploaded file is empty.
-    """
-    
+    """Raised when the uploaded file is empty."""
+
     def __init__(self) -> None:
         """
         Initialize the exception.
@@ -32,7 +31,8 @@ class EmptyFileException(BaseApplicationException):
             message (str): Human-readable error message.
         """
         super().__init__("The uploaded file is empty.")
-        
+
+
 class InvalidFileExtensionException(BaseApplicationException):
     """
     Raised when the uploaded file extension is not supported.
@@ -44,15 +44,15 @@ class InvalidFileExtensionException(BaseApplicationException):
             "Supported extensions are: .pdf and .docx."
         )
 
+
 class CorruptedFileException(BaseApplicationException):
     """
-     Raised when the uploaded document is corrupted.
+    Raised when the uploaded document is corrupted.
     """
 
     def __init__(self) -> None:
-        super().__init__(
-            "The uploaded document appears to be corrupted."
-        )
+        super().__init__("The uploaded document appears to be corrupted.")
+
 
 class InvalidFileSignatureException(BaseApplicationException):
     """

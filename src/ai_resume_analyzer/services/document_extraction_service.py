@@ -6,12 +6,12 @@ Delegates document text extraction to the appropriate extractor.
 
 from fastapi import UploadFile
 
+from ai_resume_analyzer.core.constants import ContentType
 from ai_resume_analyzer.services.extractors import (
-    BaseDocumentExtractor, 
-    DocxExtractor,   
+    BaseDocumentExtractor,
+    DocxExtractor,
     PdfExtractor,
 )
-from ai_resume_analyzer.core.constants import ContentType
 
 
 class DocumentExtractionService:
@@ -27,7 +27,6 @@ class DocumentExtractionService:
             ContentType.PDF: PdfExtractor(),
             ContentType.DOCX: DocxExtractor(),
         }
-        
 
     async def extract_text(self, file: UploadFile) -> str:
         """
@@ -47,8 +46,8 @@ class DocumentExtractionService:
 
         if extractor is None:
             raise RuntimeError(
-                    f"No extractor registered for content type: {file.content_type}"
-                    )
+                f"No extractor registered for content type: {file.content_type}"
+            )
 
         await extractor.validate_document(file)
         return await extractor.extract_text(file)

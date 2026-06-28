@@ -2,34 +2,33 @@
 Test for FileValidator
 """
 
-from io import BytesIO
-
 import pytest
 
 from ai_resume_analyzer.core.constants import FileConstants
 from ai_resume_analyzer.core.file_validator import FileValidator
 from ai_resume_analyzer.exceptions import (
     EmptyFileException,
+    FileTooLargeException,
     InvalidFileExtensionException,
     UnsupportedDocumentException,
-    FileTooLargeException
-    )
-from tests.conftest import create_upload_file
+)
+
 
 def test_validate_content_type_unsupported(create_upload_file):
     """
     Should raise exception for unsupported content type.
     """
-    
+
     file = create_upload_file(
         filename="resume.txt",
         content=b"Hello",
         content_type="text/plain",
     )
-    
+
     with pytest.raises(UnsupportedDocumentException):
         FileValidator.validate(file)
-        
+
+
 def test_validate_empty_file(create_upload_file):
     """
     Should raise exception for an empty file.
@@ -44,6 +43,7 @@ def test_validate_empty_file(create_upload_file):
     with pytest.raises(EmptyFileException):
         FileValidator.validate(file)
 
+
 def test_validate_invalid_extension(create_upload_file):
     """
     Should raise exception for an unsupported file extension.
@@ -51,10 +51,11 @@ def test_validate_invalid_extension(create_upload_file):
     file = create_upload_file(
         filename="resume.txt",
         content=b"%PDF-1.4",
-        content_type= "application/pdf",
+        content_type="application/pdf",
     )
     with pytest.raises(InvalidFileExtensionException):
         FileValidator.validate(file)
+
 
 def test_validate_file_too_large(create_upload_file):
     """

@@ -2,14 +2,15 @@
 Test for the health endpoint
 """
 
-def test_health_check(client) :
+
+def test_health_check(client):
     """
     Verify that the health endpoint is reachable.
     """
-    response = client.get("/health")     
+    response = client.get("/health")
 
     assert response.status_code == 200
-    
+
     body = response.json()
 
     assert body["status"] == "healthy"

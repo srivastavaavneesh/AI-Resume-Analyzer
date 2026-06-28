@@ -15,10 +15,10 @@ def register_exception_handlers(app: FastAPI) -> None:
     Args:
         app: The FastAPI application instance.
     """
+
     @app.exception_handler(BaseApplicationException)
     async def handle_application_exception(
-        request: Request,
-        exc: BaseApplicationException
+        request: Request, exc: BaseApplicationException
     ) -> JSONResponse:
         """
         Handle custom application exceptions.
