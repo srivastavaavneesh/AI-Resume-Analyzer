@@ -1,10 +1,10 @@
 """Base exception for the AI Resume Analyzer."""
 
+
 class BaseApplicationException(Exception):
-    """Base exception class for all custom application exceptions.
-    
-    """
-    def __init__(self, message: str)-> None:
+    """Base exception class for all custom application exceptions."""
+
+    def __init__(self, message: str) -> None:
         """
         Initialize the Exception.
 

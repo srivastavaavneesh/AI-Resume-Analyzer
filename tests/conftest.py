@@ -2,8 +2,6 @@
 Shared pytest fixtures.
 """
 
-import pytest
-
 from io import BytesIO
 
 import pytest
@@ -12,24 +10,21 @@ from fastapi.testclient import TestClient
 
 from ai_resume_analyzer.main import app
 
-from fastapi import UploadFile
-from fastapi.testclient import TestClient
-
-
-from ai_resume_analyzer.main import app
 
 @pytest.fixture
 def client() -> TestClient:
     """
     Create a reusable Fast API test client
     """
-    return TestClient(app) 
+    return TestClient(app)
+
 
 @pytest.fixture
 def create_upload_file():
     """
     Factory fixture to create UploadFile instances for testing.
     """
+
     def _create(
         filename: str,
         content: bytes,
@@ -41,4 +36,4 @@ def create_upload_file():
             headers={"content-type": content_type},
         )
 
-    return _create   
+    return _create

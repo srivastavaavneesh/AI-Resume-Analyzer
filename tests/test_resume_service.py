@@ -1,5 +1,6 @@
-import pytest
 from unittest.mock import AsyncMock, patch
+
+import pytest
 
 from ai_resume_analyzer.services.resume_service import ResumeService
 
@@ -22,7 +23,6 @@ async def test_extract_resume_text(create_upload_file):
         "ai_resume_analyzer.services.resume_service.document_extraction_service.extract_text",
         new_callable=AsyncMock,
     ) as mock_extract:
-
         mock_extract.return_value = "John Doe Resume"
 
         result = await service.extract_resume_text(file)

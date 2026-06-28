@@ -2,7 +2,7 @@
 name = "ai-resume-analyzer"
 version = "0.1.0"
 description = "AI-powered Resume Analyzer built with FastAPI, NLP, and modern AI engineering practices."
-readme = "README.md"
+readme = "README.MD"
 requires-python = ">=3.13"
 
 dependencies = [
@@ -24,7 +24,26 @@ packages = ["src/ai_resume_analyzer"]
 
 [dependency-groups]
 dev = [
+    "black>=26.5.1",
     "httpx>=0.28.1",
+    "isort>=8.0.1",
+    "pre-commit>=4.6.0",
     "pytest>=9.1.1",
     "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.20",
 ]
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
