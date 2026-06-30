@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Resume Analyzer
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet"
+      href="{{ url_for('static', path='css/pages/index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            🚀 AI Powered Resume Analysis
+        </span>
+
+        <h1>
+            Analyze Your Resume in Seconds
+        </h1>
+
+        <p>
+            Upload your resume and instantly extract structured text.
+            Soon you'll receive ATS scoring, skill extraction,
+            AI recommendations and interview insights.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="/resume/upload" class="btn">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Upload Resume
+            </a>
+
+            <a href="/docs" class="btn btn-secondary">
+                <i class="fa-solid fa-book"></i>
+                API Docs
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <div class="preview-card">
+
+            <div class="preview-header">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <span>Resume Analysis</span>
+
+            </div>
+
+            <div class="preview-item">
+                <span>Name</span>
+                <strong>✓ Detected</strong>
+            </div>
+
+            <div class="preview-item">
+                <span>Email</span>
+                <strong>✓ Detected</strong>
+            </div>
+
+            <div class="preview-item">
+                <span>Skills</span>
+                <strong>18 Found</strong>
+            </div>
+
+            <div class="preview-item">
+                <span>Experience</span>
+                <strong>5 Years</strong>
+            </div>
+
+            <div class="preview-item">
+                <span>ATS Score</span>
+                <strong>Coming Soon</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="section-title">
+
+        <h2>Features</h2>
+
+        <p>Built for modern resume analysis.</p>
+
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h3>PDF & DOCX Support</h3>
+
+            <p>
+                Upload resumes in the most commonly used formats.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h3>Fast Extraction</h3>
+
+            <p>
+                Extract resume text in just a few seconds.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>AI Ready</h3>
+
+            <p>
+                Designed for ATS scoring and AI insights.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="workflow">
+
+    <div class="section-title">
+
+        <h2>How It Works</h2>
+
+    </div>
+
+    <div class="workflow-grid">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Upload</h3>
+
+            <p>Select your resume.</p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Analyze</h3>
+
+            <p>AI extracts structured information.</p>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Results</h3>
+
+            <p>Review extracted content instantly.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

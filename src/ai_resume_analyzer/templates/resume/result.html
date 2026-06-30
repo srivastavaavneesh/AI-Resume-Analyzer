@@ -1,0 +1,517 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume Analysis
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', path='css/pages/result.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="result-page">
+
+    <div class="page-header">
+        <div class="header-left">
+            <h1>
+                <i class="fa-solid fa-file-circle-check"></i>
+                Resume Analysis
+            </h1>
+            <div class="file-name">
+                <i class="fa-solid fa-file-lines"></i>
+                {{ filename }}
+            </div>
+        </div>
+
+        <div class="header-right">
+
+            <a href="/resume/upload" class="btn">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Analyze Another Resume
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ATS Score -->
+
+    <section class="result-card">
+
+        <h2>
+            <i class="fa-solid fa-chart-line"></i>
+            ATS Score
+        </h2>
+
+        <div class="ats-container">
+
+            <div class="ats-summary">
+
+                <div class="ats-score">
+
+                    <span class="score">{{ ats.score }}</span>
+
+                    <span class="out-of">/100</span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill
+                    {% if ats.score >= 80 %}
+                        excellent
+                    {% elif ats.score >= 60 %}
+                        good
+                    {% elif ats.score >= 40 %}
+                        average
+                    {% else %}
+                        poor
+                    {% endif %}" style="width: {{ ats.score }}%;">
+                    </div>
+
+                </div>
+
+                <div class="grade-badge
+                {% if ats.score >= 80 %}
+                    excellent
+                {% elif ats.score >= 60 %}
+                    good
+                {% elif ats.score >= 40 %}
+                    average
+                {% else %}
+                    poor
+                {% endif %}
+            ">
+                    <i class="fa-solid fa-medal"></i>
+                    Grade {{ ats.grade }}
+                </div>
+
+            </div>
+
+            <div class="ats-details">
+
+                <div class="ats-column">
+
+                    <h3>
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Strengths
+
+                    </h3>
+
+                    <ul>
+
+                        {% for item in ats.strengths %}
+
+                        <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                <div class="ats-column">
+
+                    <h3>
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        Improvements
+
+                    </h3>
+
+                    <ul>
+
+                        {% for item in ats.improvements %}
+
+                        <li>{{ item }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Personal Information -->
+    <section class="result-card">
+
+        <h2>
+            <i class="fa-solid fa-address-card"></i>
+            Personal Information
+        </h2>
+
+        <div class="personal-grid">
+
+            <!-- Name -->
+            <div class="info-item">
+
+                <div class="info-top">
+
+                    <label>
+                        <i class="fa-solid fa-user"></i>
+                        Name
+                    </label>
+
+                    <button class="mini-copy-btn" onclick="copyValue('{{ resume.name }}', this)">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        <span>Copy</span>
+
+                    </button>
+
+                </div>
+
+                <div class="info-value">
+
+                    {{ resume.name or "No information detected" }}
+
+                </div>
+
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="info-item">
+
+                <div class="info-top">
+
+                    <label>
+                        <i class="fa-brands fa-linkedin"></i>
+                        LinkedIn
+                    </label>
+
+                    <button class="mini-copy-btn" onclick="copyValue('{{ resume.linkedin}}', this)">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        <span>Copy</span>
+
+                    </button>
+
+                </div>
+
+                <div class="info-value">
+
+                    {{ resume.linkedin or "No information detected" }}
+
+                </div>
+
+            </div>
+
+            <!-- Email -->
+            <div class="info-item">
+
+                <div class="info-top">
+
+                    <label>
+                        <i class="fa-solid fa-envelope"></i>
+                        Email
+                    </label>
+
+                    <button class="mini-copy-btn" onclick="copyValue('{{ resume.email}}', this)">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        <span>Copy</span>
+
+                    </button>
+
+                </div>
+
+                <div class="info-value">
+
+                    {{ resume.email or "No information detected" }}
+
+                </div>
+
+            </div>
+
+            <!-- GitHub -->
+            <div class="info-item">
+
+                <div class="info-top">
+
+                    <label>
+                        <i class="fa-brands fa-github"></i>
+                        GitHub
+                    </label>
+
+                    <button class="mini-copy-btn" onclick="copyValue('{{ resume.github }}', this)">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        <span>Copy</span>
+
+                    </button>
+
+                </div>
+
+                <div class="info-value">
+
+                    {{ resume.github or "No information detected" }}
+
+                </div>
+
+            </div>
+
+            <!-- Phone -->
+            <div class="info-item">
+
+                <div class="info-top">
+
+                    <label>
+                        <i class="fa-solid fa-phone"></i>
+                        Phone
+                    </label>
+
+                    <button class="mini-copy-btn" onclick="copyValue('{{ resume.phone }}', this)">
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <div class="info-value">
+
+                    {{ resume.phone or "No information detected" }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Skills -->
+    <section class="result-card">
+        <div class="card-header">
+            <h2>
+                <i class="fa-solid fa-code"></i>
+                Skills
+            </h2>
+            <button class="copy-btn" onclick="copySection('skillsContent', this)">
+
+                <i class="fa-regular fa-copy"></i>
+
+                <span>Copy</span>
+
+            </button>
+        </div>
+        {% if resume.skills %}
+        <div id="skillsContent">
+            <div class="tag-container">
+                {% for skill in resume.skills %}
+                <span class="tag">
+                    <i class="fa-solid fa-check"></i>
+                    {{ skill }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <p class="empty-state">No skills detected.</p>
+        {% endif %}
+    </section>
+    <!-- Experience -->
+    <section class="result-card">
+
+        <div class="card-header">
+            <h2>
+                <i class="fa-solid fa-briefcase"></i>
+
+                Experience
+
+            </h2>
+
+            <button class="copy-btn" onclick="copySection('experienceContent', this)">
+
+                <i class="fa-regular fa-copy"></i>
+
+                <span>Copy</span>
+
+            </button>
+
+        </div>
+
+        <div id="experienceContent">
+
+            {% if resume.experience %}
+
+            <ul class="result-list">
+
+                {% for item in resume.experience %}
+
+                <li>{{ item }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p class="empty-state">No experience section detected.</p>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+    <!-- Education -->
+    <section class="result-card">
+        <div class="card-header">
+            <h2>
+                <i class="fa-solid fa-graduation-cap"></i>
+                Education
+            </h2>
+            <button class="copy-btn" onclick="copySection('educationContent', this)">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy</span>
+            </button>
+        </div>
+
+        <div id="educationContent">
+
+            {% if resume.education %}
+
+            <ul class="result-list">
+
+                {% for item in resume.education %}
+
+                <li>{{ item }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p class="empty-state">No education section detected.</p>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+    <!-- Projects -->
+    <section class="result-card">
+        <div class="card-header">
+            <h2>
+                <i class="fa-solid fa-diagram-project"></i>
+                Projects
+            </h2>
+            <button class="copy-btn" onclick="copySection('projectsContent', this)">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy</span>
+            </button>
+        </div>
+        <div id="projectsContent">
+            {% if resume.projects %}
+            <ul class="result-list">
+                {% for item in resume.projects %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="empty-state">No projects detected.</p>
+            {% endif %}
+        </div>
+    </section>
+
+
+    <!-- Certifications -->
+    <section class="result-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                <i class="fa-solid fa-award"></i>
+
+                Certifications
+
+            </h2>
+
+            <button class="copy-btn" onclick="copySection('certificationsContent', this)">
+
+                <i class="fa-regular fa-copy"></i>
+
+                <span>Copy</span>
+
+            </button>
+
+        </div>
+
+        <div id="certificationsContent">
+
+            {% if resume.certifications %}
+
+            <ul class="result-list">
+
+                {% for item in resume.certifications %}
+
+                <li>{{ item }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            {% else %}
+
+            <p class="empty-state">No certifications detected.</p>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+    <!-- Extracted Text -->
+    <section class="result-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                Extracted Resume Text
+
+            </h2>
+
+            <button class="copy-btn" onclick="copySection('resumeTextContent', this)">
+
+                <i class="fa-regular fa-copy"></i>
+
+                <span>Copy</span>
+
+            </button>
+
+        </div>
+
+        <div id="resumeTextContent">
+
+            <pre class="resume-text">{{ resume.extracted_text }}</pre>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
