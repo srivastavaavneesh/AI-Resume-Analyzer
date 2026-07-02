@@ -1,0 +1,246 @@
+.upload-page{
+
+    max-width:700px;
+
+    margin:0 auto;
+
+    padding:40px 24px;
+
+}
+.page-title {
+
+    text-align: center;
+
+    margin-bottom: 5px;
+
+}
+
+.page-title h1 {
+
+    font-size: 28px;
+
+    margin-bottom: 5px;
+
+}
+
+.page-title p {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin: 0;
+}
+
+.upload-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.upload-box {
+
+    width: 100%;
+
+    background: #fff;
+
+    border: 2px dashed #cbd5e1;
+
+    border-radius: 12px;
+
+    padding: 20px 15px;
+
+    text-align: center;
+
+    transition: .25s;
+
+}
+
+.upload-box:hover {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+
+}
+
+.upload-box.dragover {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+}
+
+.upload-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    margin: 0 auto 8px;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+.upload-icon i {
+
+    font-size: 28px;
+
+    color: #2563eb;
+
+}
+
+.upload-box h2 {
+
+    margin-bottom: 3px;
+
+    font-size: 18px;
+
+}
+
+.upload-box p {
+
+    color: #64748b;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+
+}
+
+.file-info {
+
+    margin-top: 8px;
+
+    color: #475569;
+
+    font-weight: 500;
+
+    font-size: 12px;
+
+}
+
+.supported-files {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 8px;
+
+}
+
+.supported-files span {
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    font-size: 11px;
+
+}
+
+.loading-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, .95);
+
+    z-index: 9999;
+
+}
+
+.loading-overlay.show {
+
+    display: flex;
+
+}
+
+.loader {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+    border: 6px solid #dbeafe;
+
+    border-top-color: #2563eb;
+
+    animation: spin 1s linear infinite;
+
+    margin-bottom: 20px;
+
+}
+
+.loading-overlay h2 {
+
+    margin-bottom: 8px;
+
+}
+
+.loading-overlay p {
+
+    color: #64748b;
+
+}
+
+@keyframes spin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .upload-page {
+
+        padding: 10px 0 30px;
+
+    }
+
+    .upload-box {
+
+        padding: 35px 20px;
+
+    }
+
+}
