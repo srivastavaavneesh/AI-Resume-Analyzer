@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Hero Section -->
+
+<div class="hero">
+
+    <div>
+
+        <h1>Welcome to AI Studio 👋</h1>
+
+        <p>
+            Your unified workspace for AI-powered applications.
+            Build, analyze and manage your AI solutions from one place.
+        </p>
+
+    </div>
+
+    <div class="hero-version">
+
+        <span>Platform Version</span>
+
+        <h2>v2.0</h2>
+
+    </div>
+
+</div>
+
+
+<!-- Statistics -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+
+        <div>
+            <h2>2</h2>
+            <p>Projects</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-rocket"></i>
+        </div>
+
+        <div>
+            <h2>1</h2>
+            <p>Active Module</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <div>
+            <h2>1</h2>
+            <p>Coming Soon</p>
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-code"></i>
+        </div>
+
+        <div>
+            <h2>v2.0</h2>
+            <p>Platform</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="section-header">
+
+    <h2>Quick Actions</h2>
+
+</div>
+
+<div class="quick-actions">
+
+    <a href="/resume/upload" class="action-card">
+
+        <i class="fa-solid fa-upload"></i>
+
+        <span>Upload Resume</span>
+
+    </a>
+
+    <a href="#" class="action-card disabled">
+
+        <i class="fa-solid fa-file-pdf"></i>
+
+        <span>PDF Analyzer</span>
+
+    </a>
+
+    <a href="#" class="action-card disabled">
+
+        <i class="fa-solid fa-robot"></i>
+
+        <span>AI Assistant</span>
+
+    </a>
+
+    <a href="#" class="action-card disabled">
+
+        <i class="fa-solid fa-gear"></i>
+
+        <span>Settings</span>
+
+    </a>
+
+</div>
+
+<!-- Modules -->
+
+<div class="dashboard-grid">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div class="card-title">
+
+                <div class="module-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div>
+
+                    <h3>Resume Analyzer</h3>
+
+                    <small>Version 1.0.0</small>
+
+                </div>
+
+            </div>
+
+            <span class="badge active">Active</span>
+
+        </div>
+
+        <p class="card-description">
+
+            Extract structured text from PDF and DOCX resumes using AI-ready document processing.
+
+        </p>
+
+        <div class="module-info">
+
+            <div>
+
+                <span>Supported Files</span>
+
+                <strong>PDF, DOCX</strong>
+
+            </div>
+
+            <div>
+
+                <span>Status</span>
+
+                <strong>Production Ready</strong>
+
+            </div>
+
+        </div>
+
+        <div class="progress-section">
+
+            <div class="progress-header">
+
+                <span>Implementation</span>
+
+                <span>100%</span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"></div>
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+
+            <a href="/resume/upload" class="btn">
+
+                Open Module
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>  
+
+</div>
+
+{% endblock %}
