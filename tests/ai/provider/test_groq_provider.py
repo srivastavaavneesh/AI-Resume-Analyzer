@@ -7,12 +7,11 @@ from unittest.mock import patch
 from ai_resume_analyzer.ai.providers.groq_provider import GroqProvider
 
 
+@patch(
+    "ai_resume_analyzer.ai.providers.groq_provider.settings.groq_api_key", "dummy-key"
+)
 @patch("ai_resume_analyzer.ai.providers.groq_provider.Groq")
 def test_health_check_success(mock_groq):
-    """
-    Verify that health_check returns True when the Groq client
-    successfully responds to chat.completions.create().
-    """
     mock_groq.return_value.chat.completions.create.return_value = {}
 
     provider = GroqProvider()

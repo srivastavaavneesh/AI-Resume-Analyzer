@@ -48,8 +48,14 @@ class GeminiProvider(AIProvider):
 
     def __init__(self):
         self.model = settings.gemini_model
-        logger.info(f"Gemini Provider initialized ({self.model})")
-        self.client = genai.Client(api_key=settings.gemini_api_key)
+        self._client = None
+
+    @property
+    def client(self):
+        if self._client is None:
+            self._client = genai.Client(api_key=settings.gemini_api_key)
+            logger.info(f"Gemini Provider initialized ({self.model})")
+        return self._client
 
     def generate_text(self, prompt: str, context: str) -> AIResponse:
         """

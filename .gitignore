@@ -26,7 +26,7 @@ dist/               # Distribution packages
 *.egg-info/         # Python package metadata
 
 # -----------------------------------------------------------------------------
-# Testing
+# Testing / Coverage
 # -----------------------------------------------------------------------------
 .pytest_cache/      # Pytest cache
 .coverage           # Coverage reports

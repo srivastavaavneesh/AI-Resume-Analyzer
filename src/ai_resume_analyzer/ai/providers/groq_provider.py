@@ -12,7 +12,10 @@ from groq import Groq
 
 from ai_resume_analyzer.ai.providers.base import AIProvider
 from ai_resume_analyzer.core.config import settings
+from ai_resume_analyzer.core.logging.logger import get_logger
 from ai_resume_analyzer.schemas.ai import AIResponse
+
+logger = get_logger(__name__)
 
 
 class GroqProvider(AIProvider):
@@ -31,8 +34,15 @@ class GroqProvider(AIProvider):
     """
 
     def __init__(self):
-        self.client = Groq(api_key=settings.groq_api_key)
         self.model = settings.groq_model
+        self._client = None
+
+    @property
+    def client(self):
+        if self._client is None:
+            self._client = Groq(api_key=settings.groq_api_key)
+            logger.info(f"Groq Provider initialized ({self.model})")
+        return self._client
 
     def generate_text(self, prompt: str, context: str) -> AIResponse:
         """
