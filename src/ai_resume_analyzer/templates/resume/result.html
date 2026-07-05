@@ -62,31 +62,14 @@ Resume Analysis
 
                 <div class="progress-bar">
 
-                    <div class="progress-fill
-                    {% if ats.score >= 80 %}
-                        excellent
-                    {% elif ats.score >= 60 %}
-                        good
-                    {% elif ats.score >= 40 %}
-                        average
-                    {% else %}
-                        poor
-                    {% endif %}" style="width: {{ ats.score }}%;">
+                    <div class="progress-fill {% if ats.score >= 80 %}excellent{% elif ats.score >= 60 %}good{% elif ats.score >= 40 %}average{% else %}poor{% endif %}"
+                        style="width: {{ ats.score | default(0) | int }}%;">
                     </div>
 
                 </div>
 
-                <div class="grade-badge
-                {% if ats.score >= 80 %}
-                    excellent
-                {% elif ats.score >= 60 %}
-                    good
-                {% elif ats.score >= 40 %}
-                    average
-                {% else %}
-                    poor
-                {% endif %}
-            ">
+                <div
+                    class="grade-badge {% if ats.score >= 80 %}excellent{% elif ats.score >= 60 %}good{% elif ats.score >= 40 %}average{% else %}poor{% endif %}">
                     <i class="fa-solid fa-medal"></i>
                     Grade {{ ats.grade }}
                 </div>

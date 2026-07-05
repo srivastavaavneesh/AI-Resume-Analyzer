@@ -1,24 +1,31 @@
-:root{
+/* -----------------------------------------------------------------------------
+File: variables.css
+Purpose: Global CSS variables for AI Resume Analyzer.
+         Defines color palette, typography, spacing, and reusable design tokens.
+----------------------------------------------------------------------------- */
 
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
+:root {
+    /* Primary brand colors */
+    --primary: #2563eb;       /* Main accent color (blue) */
+    --primary-dark: #1d4ed8;  /* Darker shade for hover/focus states */
 
-    --success:#16a34a;
-    --danger:#dc2626;
-    --warning:#f59e0b;
+    /* Semantic colors */
+    --success: #16a34a;       /* Success messages, positive actions */
+    --danger: #dc2626;        /* Errors, destructive actions */
+    --warning: #f59e0b;       /* Warnings, alerts */
 
-    --background:#f8fafc;
+    /* Backgrounds & surfaces */
+    --background: #f8fafc;    /* App background (light gray) */
+    --surface: #ffffff;       /* Card, modal, and container background */
 
-    --surface:#ffffff;
+    /* Borders */
+    --border: #e2e8f0;        /* Neutral border color for inputs/cards */
 
-    --border:#e2e8f0;
+    /* Text colors */
+    --text: #1e293b;          /* Primary text color (dark gray/blue) */
+    --text-light: #64748b;    /* Secondary text color (muted gray) */
 
-    --text:#1e293b;
-
-    --text-light:#64748b;
-
-    --radius:12px;
-
-    --shadow:0 8px 24px rgba(0,0,0,.08);
-
+    /* Layout tokens */
+    --radius: 12px;           /* Default border radius for buttons/cards */
+    --shadow: 0 8px 24px rgba(0,0,0,.08); /* Default shadow for elevation */
 }

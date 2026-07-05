@@ -1,16 +1,28 @@
-repos:
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
-    hooks:
-      - id: black
+# -----------------------------------------------------------------------------
+# File: .pre-commit-config.yaml
+# Purpose: Defines automated code quality checks that run before each commit.
+# Tools included:
+#   - Black: Python code formatter (PEP 8 compliant)
+#   - isort: Automatically sorts and organizes imports
+#   - Ruff: Fast Python linter and formatter for style, errors, performance
+# -----------------------------------------------------------------------------
 
+repos:
+  # -----------------------------------------------------------------------------
+  # Import Sorter: isort
+  # Automatically organizes Python imports into standard order
+  # -----------------------------------------------------------------------------
   - repo: https://github.com/pycqa/isort
-    rev: 6.0.1
+    rev: 9.0.0a3
     hooks:
       - id: isort
 
+  # -----------------------------------------------------------------------------
+  # Linter & Formatter: Ruff
+  # Fast Python linter + formatter for style, errors, and performance checks
+  # -----------------------------------------------------------------------------
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+    rev: v0.15.20
     hooks:
       - id: ruff
       - id: ruff-format

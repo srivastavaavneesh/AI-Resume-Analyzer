@@ -1,8 +1,9 @@
-"""
-UI routes.
-
-Handles HTML pages for the application.
-"""
+# -----------------------------------------------------------------------------
+# File: ui_routes.py
+# Purpose: Defines FastAPI routes for rendering HTML pages (UI) of the
+#          AI Resume Analyzer application. Handles landing page, upload page,
+#          and resume analysis workflow.
+# -----------------------------------------------------------------------------
 
 from fastapi import APIRouter, File, Request, UploadFile
 from fastapi.templating import Jinja2Templates
@@ -12,29 +13,22 @@ from ai_resume_analyzer.services.parser_service import parser_service
 from ai_resume_analyzer.services.resume_service import resume_service
 
 router = APIRouter(tags=["UI"])
-
 templates = Jinja2Templates(directory="src/ai_resume_analyzer/templates")
 
 
 @router.get("/")
 async def home(request: Request):
-    """
-    Render landing page.
-    """
+    """Render landing page."""
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={
-            "app_name": "AI Resume Analyzer",
-        },
+        context={"app_name": "AI Resume Analyzer"},
     )
 
 
 @router.get("/resume/upload")
 async def upload_page(request: Request):
-    """
-    Render upload page.
-    """
+    """Render upload page."""
     return templates.TemplateResponse(
         request=request,
         name="resume/upload.html",
@@ -44,20 +38,18 @@ async def upload_page(request: Request):
 
 @router.post("/resume/analyze")
 async def analyze_resume(request: Request, file: UploadFile = File(...)):
-    """
-    Analyze uploaded resume.
-    """
+    """Analyze uploaded resume and render results page."""
 
-    # Extract text
+    # Extract text from uploaded resume
     extracted_text = await resume_service.extract_resume_text(file)
 
-    # Parse resume
+    # Parse resume content
     parsed_resume = parser_service.parse(extracted_text)
 
-    # Calculate ATS Score
+    # Calculate ATS score
     ats = ats_service.calculate_score(parsed_resume)
 
-    # Render Result Page
+    # Render result page
     return templates.TemplateResponse(
         request=request,
         name="resume/result.html",

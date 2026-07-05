@@ -1,64 +1,61 @@
 # -----------------------------------------------------------------------------
-# Python
+# Python bytecode and cache
 # -----------------------------------------------------------------------------
-__pycache__/
-*.py[cod]
-*$py.class
+__pycache__/        # Python cache files
+*.py[cod]           # Compiled Python files
+*$py.class          # Generated class files
 
 # -----------------------------------------------------------------------------
 # Virtual Environment
 # -----------------------------------------------------------------------------
-.venv/
-venv/
+.venv/              # Local virtual environment
+venv/               # Alternate virtual environment folder
 
 # -----------------------------------------------------------------------------
 # Environment Variables
 # -----------------------------------------------------------------------------
-.env
-.env.*
-
-!.env.example
+.env                # Local environment variables (secrets)
+.env.*              # Other env files
+!.env.example       # Keep example env file for reference
 
 # -----------------------------------------------------------------------------
 # Distribution / Packaging
 # -----------------------------------------------------------------------------
-build/
-dist/
-*.egg-info/
+build/              # Build artifacts
+dist/               # Distribution packages
+*.egg-info/         # Python package metadata
 
 # -----------------------------------------------------------------------------
-# Testing
+# Testing / Coverage
 # -----------------------------------------------------------------------------
-.pytest_cache/
-.coverage
-htmlcov/
+.pytest_cache/      # Pytest cache
+.coverage           # Coverage reports
+htmlcov/            # Coverage HTML output
 
 # -----------------------------------------------------------------------------
 # Type Checking
 # -----------------------------------------------------------------------------
-.mypy_cache/
+.mypy_cache/        # MyPy type checker cache
 
 # -----------------------------------------------------------------------------
-# Ruff
+# Ruff (Python linter)
 # -----------------------------------------------------------------------------
-.ruff_cache/
+.ruff_cache/        # Ruff linter cache
 
 # -----------------------------------------------------------------------------
-# IDE
+# IDE / Editor settings
 # -----------------------------------------------------------------------------
-.vscode/
-.idea/
+.vscode/            # VS Code project settings
+.idea/              # JetBrains IDE project settings
 
 # -----------------------------------------------------------------------------
-# Operating System
+# Operating System files
 # -----------------------------------------------------------------------------
-.DS_Store
-Thumbs.db
-desktop.ini
+.DS_Store           # macOS system file
+Thumbs.db           # Windows thumbnail cache
+desktop.ini         # Windows desktop config
 
 # -----------------------------------------------------------------------------
 # Logs
 # -----------------------------------------------------------------------------
-*.log
-
-.env
+*.log               # Log files

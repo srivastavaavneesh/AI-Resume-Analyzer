@@ -1,5 +1,9 @@
 """
 File validation utilities.
+
+Provides helper methods to validate uploaded files in the AI Resume Analyzer.
+Ensures files meet requirements for type, extension, size, and content signature
+before being processed by downstream services.
 """
 
 from pathlib import Path
@@ -19,6 +23,13 @@ from ai_resume_analyzer.exceptions import (
 class FileValidator:
     """
     Validates uploaded files.
+
+    Responsibilities:
+        - Check MIME type against supported content types.
+        - Verify file extension matches allowed formats.
+        - Enforce maximum file size limits.
+        - Ensure file is not empty.
+        - Optionally validate file signature (magic bytes).
     """
 
     @classmethod
@@ -26,12 +37,17 @@ class FileValidator:
         """
         Validate the uploaded file.
 
+        Workflow:
+            1. Validate content type.
+            2. Validate extension.
+            3. Validate file size.
+            4. Validate file is not empty.
+
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
-            BaseApplicationException:
-            If any validation fails.
+            BaseApplicationException: If any validation fails.
         """
         cls._validate_content_type(file)
         cls._validate_extension(file)
@@ -44,11 +60,10 @@ class FileValidator:
         Validate the uploaded file content type.
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
-            UnsupportedDocumentException:
-                If the file's content type is not supported.
+            UnsupportedDocumentException: If the file's content type is not supported.
         """
         if file.content_type not in FileConstants.SUPPORTED_CONTENT_TYPES:
             raise UnsupportedDocumentException(file.content_type)
@@ -59,11 +74,10 @@ class FileValidator:
         Validate the uploaded file extension.
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
-            InvalidFileExtensionException:
-                If the file's extension is not supported.
+            InvalidFileExtensionException: If the file's extension is not supported.
         """
         extension = Path(file.filename).suffix.lower()
         if extension not in FileConstants.SUPPORTED_EXTENSIONS:
@@ -75,15 +89,13 @@ class FileValidator:
         Validate the uploaded file size.
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
             FileTooLargeException: If the file size exceeds the maximum allowed size.
         """
-
         file_size = cls._get_file_size(file)
         max_size = FileConstants.MAX_FILE_SIZE_MB * 1024 * 1024
-
         if file_size > max_size:
             raise FileTooLargeException(FileConstants.MAX_FILE_SIZE_MB)
 
@@ -91,6 +103,12 @@ class FileValidator:
     def _validate_empty_file(cls, file: UploadFile) -> None:
         """
         Validate that the uploaded file is not empty.
+
+        Args:
+            file (UploadFile): Uploaded file.
+
+        Raises:
+            EmptyFileException: If the file size is zero.
         """
         if cls._get_file_size(file) == 0:
             raise EmptyFileException()
@@ -98,17 +116,18 @@ class FileValidator:
     @staticmethod
     def _get_file_size(file: UploadFile) -> int:
         """
-        Get the size of the uploaded file in megabytes.
+        Get the size of the uploaded file in bytes.
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
+
         Returns:
-            int: File size in megabytes.
+            int: File size in bytes.
         """
         file.file.seek(0, 2)  # Move to the end of the file
         file_size = file.file.tell()  # Get the current position (file size)
         file.file.seek(0)  # Reset the file pointer to the beginning
-        return file_size  # return bytes
+        return file_size
 
     @classmethod
     def _validate_content_type_extension(cls, file: UploadFile) -> None:
@@ -116,30 +135,27 @@ class FileValidator:
         Ensure the MIME type matches the file extension.
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
-            InvalidFileExtensionException:
-                If the file's extension is not supported.
+            InvalidFileExtensionException: If the extension does not match the MIME type.
         """
         extension = Path(file.filename).suffix.lower()
-
         expected = FileConstants.CONTENT_TYPE_TO_EXTENSION.get(file.content_type)
-
         if expected != extension:
             raise InvalidFileExtensionException(extension)
 
     @classmethod
     def _validate_magic_bytes(cls, file: UploadFile) -> None:
         """
-        Validate the uploaded file signature.
+        Validate the uploaded file signature (magic bytes).
 
         Args:
-            file: Uploaded file.
+            file (UploadFile): Uploaded file.
 
         Raises:
-            InvalidFileSignatureException:
-                If the file's magic bytes do not match the expected magic bytes for its extension.
+            InvalidFileSignatureException: If the file's magic bytes do not match
+                                           the expected signature for its type.
         """
         header = file.file.read(4)
         file.file.seek(0)
@@ -149,5 +165,5 @@ class FileValidator:
                 raise InvalidFileSignatureException()
 
         elif file.content_type == ContentType.DOCX:
-            if not header.startswith(FileConstants.PDF_MAGIC_BYTES):
+            if not header.startswith(FileConstants.DOCX_MAGIC_BYTES):
                 raise InvalidFileSignatureException()

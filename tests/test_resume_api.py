@@ -1,11 +1,15 @@
+"""
+Unit tests for the /resume/upload endpoint.
+"""
+
 from unittest.mock import AsyncMock, patch
 
 
 def test_extract_resume_endpoint(client):
     """
-    Should return extracted resume text.
+    Verify that the /resume/upload endpoint processes a PDF file
+    and returns the expected extracted resume text.
     """
-
     with patch(
         "ai_resume_analyzer.api.routes.resume.resume_service.extract_resume_text",
         new_callable=AsyncMock,
@@ -16,13 +20,18 @@ def test_extract_resume_endpoint(client):
             "/resume/upload",
             files={
                 "file": (
-                    "resume.pdf",
-                    b"dummy pdf",
-                    "application/pdf",
+                    "resume.pdf",  # filename
+                    b"dummy pdf",  # file content
+                    "application/pdf",  # MIME type
                 )
             },
         )
 
+        # Endpoint should respond with HTTP 200
         assert response.status_code == 200
-        assert response.json()["message"] == "Resume processed successfully."
-        assert response.json()["extracted_text"] == "John Doe Resume"
+
+        body = response.json()
+
+        # Response body should confirm success and include extracted text
+        assert body["message"] == "Resume processed successfully."
+        assert body["extracted_text"] == "John Doe Resume"

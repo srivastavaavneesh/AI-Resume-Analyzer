@@ -1,11 +1,16 @@
-main{
+/* -----------------------------------------------------------------------------
+File: content.css
+Purpose: Basic layout rules for main content area.
+----------------------------------------------------------------------------- */
 
-    flex:1;
-
+main {
+    flex: 1; 
+    /* Allow <main> to grow and fill available space inside a flex container.
+       Useful when paired with a sidebar or other sibling elements in a flex layout. */
 }
 
-.content{
-
-    width:100%;
-
+.content {
+    width: 100%; 
+    /* Ensure the .content section spans the full width of its parent.
+       Prevents shrinking or leaving gaps, especially inside grid/flex layouts. */
 }

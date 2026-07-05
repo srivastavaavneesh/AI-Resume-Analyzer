@@ -1,246 +1,186 @@
-.upload-page{
-
-    max-width:700px;
-
-    margin:0 auto;
-
-    padding:40px 24px;
-
+/* ==========================================
+   UPLOAD PAGE WRAPPER
+   Centers and limits the upload page width
+========================================== */
+.upload-page {
+    max-width: 700px;          /* Limit content width */
+    margin: 0 auto;            /* Center horizontally */
+    padding: 40px 24px;        /* Inner spacing */
 }
+
+/* ==========================================
+   PAGE TITLE
+   Heading + subtitle above upload form
+========================================== */
 .page-title {
-
     text-align: center;
-
     margin-bottom: 5px;
-
 }
 
 .page-title h1 {
-
     font-size: 28px;
-
     margin-bottom: 5px;
-
 }
 
 .page-title p {
-
-    color: #64748b;
-
+    color: #64748b;            /* Muted gray text */
     font-size: 13px;
-
     margin: 0;
 }
 
+/* ==========================================
+   UPLOAD FORM
+   Container for drag & drop + browse button
+========================================== */
 .upload-form {
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    gap: 12px;
+    gap: 12px;                 /* Space between elements */
 }
 
+/* ==========================================
+   UPLOAD BOX
+   Drag & drop area with hover/drag states
+========================================== */
 .upload-box {
-
     width: 100%;
-
     background: #fff;
-
-    border: 2px dashed #cbd5e1;
-
+    border: 2px dashed #cbd5e1; /* Dashed border for drop zone */
     border-radius: 12px;
-
     padding: 20px 15px;
-
     text-align: center;
-
     transition: .25s;
-
 }
 
 .upload-box:hover {
-
-    border-color: #2563eb;
-
+    border-color: #2563eb;     /* Highlight border */
     box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
-
 }
 
 .upload-box.dragover {
-
     border-color: #2563eb;
-
-    background: #eff6ff;
-
+    background: #eff6ff;       /* Light blue background when dragging */
 }
 
+/* ==========================================
+   UPLOAD ICON
+   Circular icon container inside drop zone
+========================================== */
 .upload-icon {
-
     width: 60px;
-
     height: 60px;
-
     margin: 0 auto 8px;
-
     border-radius: 50%;
-
     background: #eff6ff;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
 }
 
 .upload-icon i {
-
     font-size: 28px;
-
     color: #2563eb;
-
 }
 
+/* ==========================================
+   UPLOAD BOX TEXT
+========================================== */
 .upload-box h2 {
-
     margin-bottom: 3px;
-
     font-size: 18px;
-
 }
 
 .upload-box p {
-
     color: #64748b;
-
     margin-bottom: 10px;
-
     font-size: 13px;
-
 }
 
+/* ==========================================
+   FILE INFO
+   Displays selected file name + size
+========================================== */
 .file-info {
-
     margin-top: 8px;
-
     color: #475569;
-
     font-weight: 500;
-
     font-size: 12px;
-
 }
 
+/* ==========================================
+   SUPPORTED FILE TYPES
+   Pills showing allowed formats
+========================================== */
 .supported-files {
-
     display: flex;
-
     justify-content: center;
-
     flex-wrap: wrap;
-
     gap: 8px;
-
     margin-top: 8px;
-
 }
 
 .supported-files span {
-
     padding: 5px 10px;
-
     border-radius: 20px;
-
     background: #f8fafc;
-
     border: 1px solid #e2e8f0;
-
     font-size: 11px;
-
 }
 
+/* ==========================================
+   LOADING OVERLAY
+   Fullscreen overlay shown during analysis
+========================================== */
 .loading-overlay {
-
     position: fixed;
-
-    inset: 0;
-
-    display: none;
-
+    inset: 0;                  /* Cover entire viewport */
+    display: none;             /* Hidden by default */
     justify-content: center;
-
     align-items: center;
-
     flex-direction: column;
-
     background: rgba(255, 255, 255, .95);
-
-    z-index: 9999;
-
+    z-index: 9999;             /* Ensure overlay is on top */
 }
 
 .loading-overlay.show {
-
-    display: flex;
-
+    display: flex;             /* Show overlay when active */
 }
 
 .loader {
-
     width: 60px;
-
     height: 60px;
-
     border-radius: 50%;
-
-    border: 6px solid #dbeafe;
-
-    border-top-color: #2563eb;
-
+    border: 6px solid #dbeafe; /* Light blue ring */
+    border-top-color: #2563eb; /* Darker blue top for spin effect */
     animation: spin 1s linear infinite;
-
     margin-bottom: 20px;
-
 }
 
 .loading-overlay h2 {
-
     margin-bottom: 8px;
-
 }
 
 .loading-overlay p {
-
     color: #64748b;
-
 }
 
+/* ==========================================
+   LOADER ANIMATION
+========================================== */
 @keyframes spin {
-
-    to {
-
-        transform: rotate(360deg);
-
-    }
-
+    to { transform: rotate(360deg); }
 }
 
-@media(max-width:768px) {
-
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+========================================== */
+@media (max-width: 768px) {
     .upload-page {
-
-        padding: 10px 0 30px;
-
+        padding: 10px 0 30px;  /* Reduce spacing on smaller screens */
     }
 
     .upload-box {
-
-        padding: 35px 20px;
-
+        padding: 35px 20px;    /* Larger padding for touch devices */
     }
-
 }

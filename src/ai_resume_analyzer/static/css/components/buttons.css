@@ -1,70 +1,52 @@
-.btn{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
-    padding:10px 20px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    text-decoration:none;
-
-    transition:
+/* ==========================================
+   BASE BUTTON STYLE
+   Reusable button component with hover/active states
+========================================== */
+.btn {
+    display: inline-flex;                /* Inline flex for alignment */
+    align-items: center;                 /* Vertically center content */
+    justify-content: center;             /* Center horizontally */
+    gap: 8px;                            /* Space between icon/text */
+    padding: 10px 20px;                  /* Inner spacing */
+    border: none;                        /* Remove default border */
+    border-radius: 8px;                  /* Rounded corners */
+    background: #2563eb;                 /* Primary blue background */
+    color: #fff;                         /* White text */
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;                     /* Pointer cursor on hover */
+    text-decoration: none;               /* Remove underline for links */
+    transition:                          /* Smooth transitions */
         background .25s ease,
         transform .2s ease,
         box-shadow .25s ease;
-
 }
 
-.btn:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-2px);
-
-    box-shadow:0 12px 24px rgba(37,99,235,.25);
-
+/* Hover state: subtle lift + shadow */
+.btn:hover {
+    background: #1d4ed8;                 /* Darker blue on hover */
+    transform: translateY(-2px);         /* Lift effect */
+    box-shadow: 0 12px 24px rgba(37,99,235,.25); /* Glow shadow */
 }
 
-.btn:active{
-
-    transform:translateY(0);
-
+/* Active state: reset lift */
+.btn:active {
+    transform: translateY(0);
 }
 
-.btn:disabled{
-
-    opacity:.7;
-
-    cursor:not-allowed;
-
+/* Disabled state: muted + no interaction */
+.btn:disabled {
+    opacity: .7;                         /* Dimmed appearance */
+    cursor: not-allowed;                 /* Disabled cursor */
 }
 
-.btn-large{
-
-    margin-top:10px;
-
-    min-width:180px;
-
+/* ==========================================
+   LARGE BUTTON VARIANT
+   For primary actions needing emphasis
+========================================== */
+.btn-large {
+    margin-top: 10px;
+    min-width: 180px;                    /* Wider minimum size */
     padding: 10px 20px;
-
     font-size: 13px;
-
 }
