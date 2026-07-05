@@ -55,7 +55,6 @@ packages = ["src/ai_resume_analyzer"]
 
 [dependency-groups]
 dev = [
-    "black>=26.5.1",
     "httpx>=0.28.1",
     "isort>=8.0.1",
     "pre-commit>=4.6.0",
@@ -64,10 +63,6 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.15.20",
 ]
-
-[tool.black]
-line-length = 88
-target-version = ["py313"]
 
 [tool.isort]
 profile = "black"

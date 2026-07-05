@@ -41,15 +41,15 @@ jobs:
         run: uv sync
 
       # Code formatting checks
-      - name: Run Black
-        run: uv run black --check .
-
       - name: Run isort
         run: uv run isort --check-only .
 
       # Linting
       - name: Run Ruff
         run: uv run ruff check .
+
+      - name: Run Ruff Format
+        run: uv run ruff format --check .
 
       # Run test suite
       - name: Run Tests
